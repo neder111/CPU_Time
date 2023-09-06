@@ -31,6 +31,9 @@ while True:
     if current_time - start_time >= monitoring_duration:
         break
 
+    # Sleep for 500ms before the next data point
+    time.sleep(0.5)
+
 # Plot CPU usage over time
 plt.plot(timestamps, cpu_percentages, label='CPU Usage (%)')
 plt.xlabel('Time (seconds)')

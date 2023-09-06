@@ -1,0 +1,41 @@
+import random
+import matplotlib.pyplot as plt
+import time
+
+# Initialize lists to store CPU usage and time
+cpu_percentages = []
+timestamps = []
+
+# Define the duration of monitoring in seconds
+monitoring_duration = 60  # You can change this value as needed
+
+# Start time of monitoring
+start_time = time.time()
+
+# Monitor CPU usage and collect data
+while True:
+    # Generate a random CPU usage percentage between 28% and 53%
+    cpu_percent = random.uniform(28, 53)
+
+    # Get current time
+    current_time = time.time()
+
+    # Append data to lists
+    timestamps.append(current_time - start_time)
+    cpu_percentages.append(cpu_percent)
+
+    # Print CPU usage percentage
+    print(f'CPU Usage: {cpu_percent:.2f}%')
+
+    # Break the loop if the monitoring duration is reached
+    if current_time - start_time >= monitoring_duration:
+        break
+
+# Plot CPU usage over time
+plt.plot(timestamps, cpu_percentages, label='CPU Usage (%)')
+plt.xlabel('Time (seconds)')
+plt.ylabel('CPU Usage (%)')
+plt.title('Random CPU Usage Over Time')
+plt.grid(True)
+plt.legend()
+plt.show()

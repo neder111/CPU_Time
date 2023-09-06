@@ -1,0 +1,44 @@
+# install matplot pip install psutil matplotlib
+
+
+import psutil
+import matplotlib.pyplot as plt
+import time
+
+# Initialize lists to store CPU usage and time
+cpu_percentages = []
+timestamps = []
+
+# Define the duration of monitoring in seconds
+monitoring_duration = 60  # You can change this value as needed
+
+# Start time of monitoring
+start_time = time.time()
+
+# Monitor CPU usage and collect data
+while True:
+    # Get CPU usage as a percentage
+    cpu_percent = psutil.cpu_percent(interval=1)
+
+    # Get current time
+    current_time = time.time()
+
+    # Append data to lists
+    timestamps.append(current_time - start_time)
+    cpu_percentages.append(cpu_percent)
+
+    # Print CPU usage percentage
+    print(f'CPU Usage: {cpu_percent:.2f}%')
+
+    # Break the loop if the monitoring duration is reached
+    if current_time - start_time >= monitoring_duration:
+        break
+
+# Plot CPU usage over time
+plt.plot(timestamps, cpu_percentages, label='CPU Usage (%)')
+plt.xlabel('Time (seconds)')
+plt.ylabel('CPU Usage (%)')
+plt.title('CPU Usage Over Time')
+plt.grid(True)
+plt.legend()
+plt.show()
